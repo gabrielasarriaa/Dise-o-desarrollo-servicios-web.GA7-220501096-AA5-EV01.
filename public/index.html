@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>CoVigilant — Prueba del servicio de autenticación</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; background:#0f172a; color:#e2e8f0; padding: 20px; border-radius: 10px; }
+  h1 { font-size: 1.3rem; }
+  fieldset { border: 1px solid #334155; border-radius: 8px; margin-bottom: 20px; padding: 15px; }
+  legend { padding: 0 8px; font-weight: bold; }
+  input { width: 100%; padding: 8px; margin: 6px 0 12px; border-radius: 4px; border: 1px solid #475569; }
+  button { width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+  #btn-registro { background:#3b82f6; color:white; }
+  #btn-login { background:#10b981; color:white; }
+  .resultado { margin-top: 10px; padding: 10px; border-radius: 6px; font-size: 0.9rem; white-space: pre-wrap; }
+  .exito { background:#052e1a; color:#4ade80; border:1px solid #166534; }
+  .error { background:#450a0a; color:#fca5a5; border:1px solid #7f1d1d; }
+</style>
+</head>
+<body>
+  <h1>CoVigilant — Servicio de Registro / Login (Evidencia AA5-EV01)</h1>
+
+  <fieldset>
+    <legend>Registro</legend>
+    <input type="text" id="reg-usuario" placeholder="Usuario">
+    <input type="password" id="reg-contrasena" placeholder="Contraseña">
+    <button id="btn-registro" onclick="registrarUsuario()">Registrar</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>Inicio de Sesión</legend>
+    <input type="text" id="log-usuario" placeholder="Usuario">
+    <input type="password" id="log-contrasena" placeholder="Contraseña">
+    <button id="btn-login" onclick="iniciarSesion()">Iniciar sesión</button>
+  </fieldset>
+
+  <div id="resultado"></div>
+
+<script>
+  // Cliente minimo en JavaScript puro que consume el servicio web
+  // (fetch a los endpoints POST /api/registro y POST /api/login).
+
+  function mostrarResultado(data, esExito) {
+    const div = document.getElementById('resultado');
+    div.className = 'resultado ' + (esExito ? 'exito' : 'error');
+    div.innerText = JSON.stringify(data, null, 2);
+  }
+
+  async function registrarUsuario() {
+    const usuario = document.getElementById('reg-usuario').value;
+    const contrasena = document.getElementById('reg-contrasena').value;
+
+    const respuesta = await fetch('/api/registro', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario, contrasena })
+    });
+    const data = await respuesta.json();
+    mostrarResultado(data, respuesta.ok);
+  }
+
+  async function iniciarSesion() {
+    const usuario = document.getElementById('log-usuario').value;
+    const contrasena = document.getElementById('log-contrasena').value;
+
+    const respuesta = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario, contrasena })
+    });
+    const data = await respuesta.json();
+    mostrarResultado(data, respuesta.ok);
+  }
+</script>
+</body>
+</html>

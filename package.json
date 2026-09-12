@@ -1,0 +1,17 @@
+{
+  "name": "covigilant-auth-api",
+  "version": "1.0.0",
+  "description": "Servicio web (API REST) de registro e inicio de sesion para el proyecto CoVigilant - Evidencia GA7-220501096-AA5-EV01",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["sena", "adso", "api", "auth", "covigilant"],
+  "author": "Gabriela Andreina Sarria Robaina - Grupo GEA",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2"
+  }
+}

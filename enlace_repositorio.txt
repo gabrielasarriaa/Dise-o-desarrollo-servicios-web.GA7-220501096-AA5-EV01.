@@ -1,9 +1,10 @@
 Evidencia: GA7-220501096-AA5-EV01
 Proyecto: covigilant-auth-api - Servicio Web de Registro e Inicio de Sesion
-Aprendiz: Gabriela Andreina Sarria Robaina
+Aprendices: 
+Gabriela Andreina Sarria Robaina
+Esteban Velázquez 
+Anderson Coronado
 
 Enlace del repositorio en GitHub:
-https://github.com/gabrielasarriaa/covigilant-auth-api
+https://github.com/gabrielasarriaa/Dise-o-desarrollo-servicios-web.GA7-220501096-AA5-EV01.
 
-(Reemplace la URL anterior por la de su repositorio una vez lo haya
-creado y subido siguiendo la guia de Git local -> GitHub ya compartida.)
